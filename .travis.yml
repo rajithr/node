@@ -23,7 +23,7 @@ jobs:
       script:
         - pyenv global ${PYTHON_VERSION}
         - ./configure
-        - timeout --preserve-status 45m make -j2 V=1
+        - timeout --preserve-status 120m make -j2 V=1
       before_cache:
         - cp out/Release/node /home/travis/.ccache
         - cp out/Release/cctest /home/travis/.ccache
