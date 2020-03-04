@@ -4,12 +4,22 @@ env:
   global:
     - PYTHON_VERSION="3.7.1"
     - PYTHON=python3
+    - secure: "jCDgFwavDHVRydgj2FX/Sl8iDQN/YvVeeqYlUYnzkMTL+LuWleDvuQzHRaN1aycAgSwia9BprVEhIe8rGo8nC19eRcmhUIzyolbaS1q2gZhZIH9+0r0sxU/3Hbd1nDWfciqzPHrCNOanzvnTt/FcfBQpPnHMFQQBm8ZDvkSqaCG03xU39jOQMLG0w4LiX+abekSu4guLH1bT40Ha53IYLPtwhAtP7TF05jh1GoQmzGDGEGdY1oY/pcsON/qwWtfhudMZrEXHq4DbYrxxy1x4h2CA61qE/SGShSENnnWaCpFa2zauEu67j8bHNIfFi2ywzr/xbJk77zTREc1NqFg/BhkIjb/KdhV4Np2IFogIHca6YcUI+31FSkAbIDCqz6/Qcw4dfGBxMnJqhdN+zXm7ryC9Z9gADVAzyjMCxyRJI5bvlYuNEbqZX6ZHBZkSmve2aVD4Ia2VpRI7fiiwN8SHj938BLE/IaKx+HzR4M+hob5v3/6kAPxN4bluj0nHq1nWuwAZJqCj5aqG+39IiMp9sdzN960P/mBNq9jQBBn3jRa3gzyabVfZZW/QVLDmng8PRnzIgB9n042jd0y0CAn6baloYAO3oGRkJdE+dbq7UAQB2rnapaIUKda6qcyubNciZ9Ft7p2mOM4RLR2SBUdHA7gT1b5MevsBeAWX1IvXgRg="
+
 jobs:
   include:
     - stage: "Compile"
       name: "Compile Node.js"
       cache: ccache
       addons:
+        coverity_scan:
+          project:
+            name: "rajithr/node"
+            description: "Node.js"
+          notification_email: r.rajith@gmail.com
+          build_command_prepend: "./configure"
+          build_command: "make -j2"
+          branch_pattern: master
         apt:
           sources:
             - ubuntu-toolchain-r-test
