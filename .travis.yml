@@ -5,7 +5,8 @@ env:
     - PYTHON_VERSION="3.7.1"
     - PYTHON=python3
     - secure: "SwMzkhAh+OGJEw+zG33YaaUdH7s/Av17NkjAStQgFybIvYUX8eemFUwMR4SA+1jF/DPl+3V+6RzPefvTu78s73+4+6rN5TV3wi4gffhNkjBhBSr1oERLgjjl9hwIO9B/hlD4f6cFJbfsLIb5k6Rl7hxeBrmfoWqVkeCHpFb1CHo0B5uKJamS6L8/PequFjx+PpegtZOOCdYJtiUMY5082ICzZK4VHEKKcPqhyUOcUu6o/cQh/n2YRjpsmYHLqv28PCpCA6Fbivk3ARSvAbqldIs2mrMF+1kRC1N3facEfBNV4jVqIRG7jVjJxaJLHgudp6YdqaurYShcG3+Xv1MuL0JQBhPLi7sb3XIeMauS86nvwPJnbCFKxFNce582BwQzSG650ZxtZ8VpFOTNcxr0dBaV7aycd6pIDch2Cv5iYUXONMqlAfjwGscApxMeqBOvvyG2W8/79c8lfDh2TKAATY2OLJGWak8fHJnXxDV+varpdGTpTHBO0maDwjhiEKZjTvDWu7z8PSTFFo4O/yF712rDPiFSWVqd3MZuVdL9T8u3gi7C5mYGXG8z8y2SrOBkWkzeuKdVfyxl9XbHjmdVjDsmhNofqDWNrDPg+FfHjlkpZuQdVvw58HSEHwDBfDnKC3Re1p0kFA90fj9QactvVfa4bQHAdX1tnhOi9LqxSd0="
-
+before_install:
+  - echo -n | openssl s_client -connect https://scan.coverity.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' | sudo tee -a /etc/ssl/certs/ca-
 jobs:
   include:
     - stage: "Compile"
